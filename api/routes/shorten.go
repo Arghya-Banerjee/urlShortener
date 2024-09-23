@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"log"
 	"net/http"
 	"os"
 	"strconv"
@@ -27,6 +28,11 @@ func ShortenURL(c *gin.Context) {
 	defer r2.Close()
 
 	val, err := r2.Get(database.Ctx, c.ClientIP()).Result()
+	if err != nil && err != redis.Nil {
+		log.Println("Error connecting to Redis:", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to connect to Redis"})
+		return
+	}
 
 	if err == redis.Nil {
 		_ = r2.Set(database.Ctx, c.ClientIP(), os.Getenv("API_QUOTA"), 30*60*time.Second).Err()

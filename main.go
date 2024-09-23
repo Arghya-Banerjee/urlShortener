@@ -16,6 +16,10 @@ func main() {
 		fmt.Println(err)
 	}
 
+	fmt.Println("Redis Address:", os.Getenv("DB_ADDRESS"))
+	fmt.Println("App Port:", os.Getenv("APP_PORT"))
+	fmt.Println("Domain:", os.Getenv("DOMAIN"))
+
 	router := gin.Default()
 
 	setupRouters(router)
@@ -29,7 +33,7 @@ func main() {
 }
 
 func setupRouters(router *gin.Engine) {
-	router.POST("/api/v1", routes.ShortenURL)
+	router.POST("/api/v1/", routes.ShortenURL)
 	router.GET("/api/v1/shortID", routes.GetByShortID)
 	router.DELETE("/api/v1/:shortID", routes.DeleteURL)
 	router.PUT("/api/v1/:shortID", routes.EditURL)

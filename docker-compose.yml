@@ -1,13 +1,15 @@
-version : '3'
+version: '3'
 
 services:
   api:
-    context: .
-    dockerfile: dockerfile
-  ports:
-    - "8000:8080"
-  depend_on:
-    - db
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8080"
+    depends_on:
+      - db
+  
   db:
     build: ./db
     ports:
