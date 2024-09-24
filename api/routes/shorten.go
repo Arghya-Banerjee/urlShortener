@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -17,6 +18,9 @@ import (
 )
 
 func ShortenURL(c *gin.Context) {
+
+	fmt.Println("ShortenURL Called")
+
 	var body models.Request
 
 	if err := c.ShouldBind(&body); err != nil {

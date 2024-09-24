@@ -24,12 +24,14 @@ func main() {
 
 	setupRouters(router)
 
-	port := os.Getenv("APP_PORT")
-	if port == "" {
-		port = "8080"
-	}
+	// port := os.Getenv("APP_PORT")
+	// if port == "" {
+	// 	port = "8080"
+	// }
 
-	log.Fatal(router.Run(":" + port))
+	// log.Fatal(router.Run(":" + port))
+
+	log.Fatal(router.Run(":8000"))
 }
 
 func setupRouters(router *gin.Engine) {
@@ -38,4 +40,5 @@ func setupRouters(router *gin.Engine) {
 	router.DELETE("/api/v1/:shortID", routes.DeleteURL)
 	router.PUT("/api/v1/:shortID", routes.EditURL)
 	router.POST("api/v1/addTag", routes.AddTag)
+	router.GET("/test/", routes.TestP)
 }

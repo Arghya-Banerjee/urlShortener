@@ -10,6 +10,6 @@ COPY . .
 
 RUN go build -o /project/url-shortener/build/myapp .
 
-EXPOSE 8080
+EXPOSE 8000
 
 ENTRYPOINT [ "/project/url-shortener/build/myapp" ]

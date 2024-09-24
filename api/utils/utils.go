@@ -22,7 +22,8 @@ func IsDifferentDomain(url string) bool {
 
 func EnsureHttPPrefix(url string) string {
 	if !strings.HasPrefix(url, "http://") || !strings.HasPrefix(url, "https://") {
-		return "http://" + url
+		// return "http://" + url
+		return url
 	}
 	return url
-}	
+}
